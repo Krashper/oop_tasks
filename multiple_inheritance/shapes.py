@@ -24,6 +24,6 @@ class Circle(Shape):
     def __init__(self, radius):
         self.radius = radius
     def area(self):
-        return self.radius ** 2 * pi
+        return round(self.radius ** 2 * pi, 2)
     def perimeter(self):
-        return 2 * self.radius * pi
+        return round(2 * self.radius * pi, 2)
