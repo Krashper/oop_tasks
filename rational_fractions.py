@@ -1,6 +1,6 @@
 from math import gcd
 
-def lcm(x, y):
+def search_lcm(x, y):
     # choose the greater number
     if x > y:
         greater = x
@@ -18,16 +18,16 @@ def lcm(x, y):
 
 class Fraction:
     def __init__(self, num, den):
-        self.num = num
-        self.den = den
+        self.num = int(num)
+        self.den = int(den)
     def __str__(self):
         return f'{self.num}/{self.den}'
     def __add__(self, other):
-        lcm = lcm(self.den, other.den)
+        lcm = search_lcm(self.den, other.den)
         sum_num = self.num * (lcm / self.den) + other.num * (lcm / other.den)
         return Fraction(sum_num, lcm)
     def __sub__(self, other):
-        lcm = lcm(self.den, other.den)
+        lcm = search_lcm(self.den, other.den)
         sum_num = self.num * (lcm / self.den) - other.num * (lcm / other.den)
         return Fraction(sum_num, lcm)
     def __mul__(self, other):
@@ -38,8 +38,8 @@ class Fraction:
         res_gcd = gcd(res_num, res_den)
         return Fraction(res_num / res_gcd, res_den / res_gcd)
     def __eq__(self, other):
-        f1 = self.simplify(self)
-        f2 = self.simplify(other)
+        f1 = self.simplify()
+        f2 = other.simplify()
         return f1.num == f2.num and f1.den == f2.den
     def simplify(self):
         res_gcd = gcd(self.num, self.den)
